@@ -14,7 +14,7 @@
     <artifactId>test-spring-cloud-gateway</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>microservice-gateway</name>
+    <name>test-spring-cloud-gateway</name>
     <description>Spring Cloud Gateway with Kubernetes dynamic routing</description>
 
     <properties>
