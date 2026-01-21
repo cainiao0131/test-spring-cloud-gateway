@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-gateway
+  namespace: microservice-gateway
+  labels:
+    app: microservice-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: microservice-gateway
+  template:
+    metadata:
+      name: microservice-gateway
+      labels:
+        app: microservice-gateway
+    spec:
+      serviceAccountName: microservice-gateway
+      restartPolicy: Always
+      containers:
+        - name: microservice-gateway
+          image: microservice-gateway:${BUILD_VERSION}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: gateway-port
+              protocol: TCP
+          resources:
+            limits:
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
+            requests:
+              cpu: 200m
+              memory: 256Mi

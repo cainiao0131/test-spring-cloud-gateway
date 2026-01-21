@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    cloud-platform: kubernetes
+  application:
+    name: microservice-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false  # Disable default DiscoveryClient locator to avoid conflicts
+    kubernetes:
+      discovery:
+        all-namespaces: true  # Enable discovery across all namespaces (though we use client directly)
