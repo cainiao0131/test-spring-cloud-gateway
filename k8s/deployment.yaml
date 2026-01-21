@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: test-spring-cloud-gateway
-          image: test-spring-cloud-gateway:1.0.0-1
+          image: test-spring-cloud-gateway:1.0.0-2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
