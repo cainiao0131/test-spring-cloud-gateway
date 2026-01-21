@@ -1,6 +1,6 @@
 FROM eclipse-temurin:21-jdk-jammy
 
-COPY ./target/microservice-gateway-1.0.0-SNAPSHOT.jar /app/app.jar
+COPY ./target/test-spring-cloud-gateway-1.0.0-SNAPSHOT.jar /app/app.jar
 
 ENV TZ=Asia/Shanghai
 
