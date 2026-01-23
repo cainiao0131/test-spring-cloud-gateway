@@ -1,4 +1,4 @@
-package com.cainiao.gateway.config.k8s;
+package com.cainiao.gateway.config.serviceroute.k8s;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -16,7 +16,7 @@ import static java.util.Collections.synchronizedMap;
 /**
  * @author JinYi
  */
-public class K8sInMemoryRouteDefinitionRepository implements RouteDefinitionRepository {
+public class InMemoryRouteDefinitionRepository implements RouteDefinitionRepository {
 
     private final Map<String, RouteDefinition> routes = synchronizedMap(new LinkedHashMap<>());
 
@@ -51,7 +51,7 @@ public class K8sInMemoryRouteDefinitionRepository implements RouteDefinitionRepo
         return Flux.fromIterable(routesSafeCopy.values());
     }
 
-    public boolean exists(String routeId) {
-        return routes.containsKey(routeId);
+    public RouteDefinition getRouteDefinition(String routeId) {
+        return routes.get(routeId);
     }
 }
