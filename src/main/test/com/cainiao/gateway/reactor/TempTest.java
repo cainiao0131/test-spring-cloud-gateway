@@ -38,9 +38,11 @@ public class TempTest {
                     throw new RuntimeException(e);
                 }
                 if (subscription != null) {
-                    print("onNext() >>> before subscription.request(1) >>> value: " + value);
-                    subscription.request(1);
-                    print("onNext() >>> after subscription.request(1) >>> value: " + value);
+                    print("onNext() >>> before subscription.request(2) >>> value: " + value);
+                    if (value % 2 == 0) {
+                        subscription.request(2);
+                    }
+                    print("onNext() >>> after subscription.request(2) >>> value: " + value);
                 }
             }
 
@@ -55,6 +57,33 @@ public class TempTest {
             }
         });
         print("test() >>> after publisher.subscribe");
+
+
+        publisher.subscribe(new Subscriber<>() {
+            private Subscription subscription;
+
+            @Override
+            public void onSubscribe(Subscription subscription_) {
+                subscription = subscription_;
+                subscription.request(1);
+            }
+
+            @Override
+            public void onNext(Integer value) {
+                print("                                    onNext() >>> value: " + value);
+                if (subscription != null) {
+                    subscription.request(1);
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
 
         Flux<Integer> processed = publisher.filter(n -> n % 2 == 0);
         print("test() >>> before processed.subscribe");

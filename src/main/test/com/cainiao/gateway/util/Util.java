@@ -8,6 +8,6 @@ import java.util.Date;
 public class Util {
 
     public static void print(Object message) {
-        System.out.printf("%s | %s | %s%n", Thread.currentThread().getName(), new Date(), message);
+        System.out.printf("【%s】【%s】%s%n", new Date(), Thread.currentThread().getName(), message);
     }
 }
